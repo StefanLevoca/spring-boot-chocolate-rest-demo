@@ -1,15 +1,16 @@
 package sk.upjs.ics.novotnyr.chocolate;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @RestController
 @RequestMapping("/chocolates")
@@ -22,7 +23,7 @@ public class ChocolateController {
 		chocolates.add(new Chocolate("brownella", "Brownella", 52));
 	}
 
-	@RequestMapping("/{id}")
+	@GetMapping("/{id}")
 	public Chocolate get(@PathVariable String id) {
 		Chocolate chocolate = findById(id);
 		if(chocolate == null) {
@@ -31,12 +32,12 @@ public class ChocolateController {
 		return chocolate;
 	}
 	
-	@RequestMapping
+	@GetMapping
 	public List<Chocolate> list() {
 		return chocolates;
 	}	
 
-	@RequestMapping(method = RequestMethod.POST)
+	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public Chocolate add(@RequestBody Chocolate chocolate) {
 		if(alreadyExists(chocolate)) {
