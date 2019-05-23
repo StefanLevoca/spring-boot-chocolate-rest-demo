@@ -8,10 +8,13 @@
     <artifactId>spring-boot-chocolate-rest-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <jackson.version>2.9.9</jackson.version>
+    </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.1.RELEASE</version>
+        <version>2.1.5.RELEASE</version>
     </parent>
     <dependencies>
         <dependency>
